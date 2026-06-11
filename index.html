@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>魔法厨房 — 五色食物搭配师</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ========== 顶部导航 ========== -->
+<header class="header">
+  <span class="h-icon">🏮</span>
+  <span class="h-title">魔法厨房</span>
+  <span class="h-sub">五色食物搭配师 · 选 1~5 种食材</span>
+  <span class="h-spacer"></span>
+  <label class="ai-toggle" id="ai-toggle-area" title="创意模式：更多花样的菜名">
+    <input type="checkbox" id="ai-toggle">
+    <span class="ai-toggle-label">✨ 创意</span>
+  </label>
+  <span class="h-stat">🍳 <span id="stat-cook-count">0</span></span>
+  <span class="h-stat">⭐ <span id="stat-high-score">0</span></span>
+</header>
+
+<!-- ========== 主体：左 食材+锅中 / 右 历史 ========== -->
+<div class="main-layout">
+
+  <!-- 左主区 -->
+  <main class="main-area">
+
+    <!-- 锅中 + 烹饪按钮（醒目） -->
+    <section class="pot-card" id="pot-area">
+      <div class="pot-title">
+        <span>🥘 烹饪锅（已选 <strong id="selected-count">0</strong>/5）</span>
+      </div>
+      <div class="pot-slots" id="pot-slots">
+        <span class="pot-placeholder">点 击 食 材 加 入 锅 中</span>
+      </div>
+      <div class="pot-actions">
+        <button class="cook-btn" id="cook-btn" disabled>🔥 开始烹饪</button>
+        <button class="reset-btn" id="reset-btn">🔄 重置</button>
+      </div>
+    </section>
+
+    <!-- 食材（2 列大方块） -->
+    <div class="ing-columns" id="ingredient-grid"></div>
+
+    <!-- 结果卡片 -->
+    <section class="result-area" id="result-area">
+      <div class="result-card">
+        <button class="r-close" id="result-close" title="关闭">&times;</button>
+        <div class="r-head">
+          <span class="r-name" id="dish-name"></span>
+          <span class="r-score-box">
+            <span class="r-score" id="score-num">0</span><span class="r-unit">分</span>
+          </span>
+        </div>
+        <div class="r-sub" id="result-ingredients"></div>
+        <div class="r-details">
+          <span class="d-item">口味 <em id="taste-val">0</em></span>
+          <span class="d-item">营养 <em id="nutrition-val">0</em></span>
+          <span class="d-item">创意 <em id="creativity-val">0</em></span>
+          <span class="d-item">色数 <em id="color-count-val">0</em></span>
+        </div>
+        <div class="r-wuxing" id="wuxing-text"></div>
+        <div class="r-tip" id="health-tip"></div>
+        <div class="r-btns">
+          <button class="fav-btn" id="fav-btn">🤍 收藏</button>
+          <button class="reset-result-btn" id="reset-result-btn">🔄 再来一道</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 右历史侧边栏 -->
+  <aside class="sidebar">
+    <div class="sb-tabs">
+      <button class="sb-tab active" data-tab="history">📋 记录</button>
+      <button class="sb-tab" data-tab="favorites">❤️ 收藏</button>
+      <button class="sb-tab" data-tab="achievements">🏆 成就</button>
+    </div>
+    <div class="sb-header">
+      <span id="sb-title">烹饪记录</span>
+      <button class="sb-clear" id="clear-history" title="清空">🗑</button>
+    </div>
+    <div class="sb-list" id="history-list">
+      <div class="sb-empty">还没有烹饪记录，<br>快去搭配美食吧！</div>
+    </div>
+    <div class="sb-list" id="favorites-list" style="display:none;">
+      <div class="sb-empty">还没有收藏菜品，<br>烹饪后点击 ❤️ 收藏吧！</div>
+    </div>
+    <div class="sb-list" id="achievements-list" style="display:none;">
+    </div>
+  </aside>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- 成就弹窗 -->
+<div class="ach-toast" id="ach-toast">
+  <h4>🎉 新成就达成！</h4>
+  <ul id="ach-toast-list"></ul>
+</div>
+
+<!-- JS -->
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>
